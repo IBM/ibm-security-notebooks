@@ -86,6 +86,7 @@ class StixShifterDataFrame(object):
 
 
     def flatten_sco(self, obj, viewname='observed-data'):
+        # This method is contributed by @pcoccoli
         if obj['type'] != 'observed-data':
             return [obj]
         objs = obj['objects']
