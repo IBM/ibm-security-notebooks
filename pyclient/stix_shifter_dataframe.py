@@ -56,7 +56,8 @@ class StixShifterDataFrame(object):
                         logging.debug(status)
                     else:
                         raise RuntimeError("Fetching status failed")
-                result = transmission.results(search_id, 0, 9)
+                # TODO: allow user to pass No. of records
+                result = transmission.results(search_id, 0, 1000)
                 if result["success"]:
                     logging.debug("Search {} results is:\n{}".format(search_id, result["data"]))
 
@@ -81,8 +82,9 @@ class StixShifterDataFrame(object):
         dfs = []
         for ldf in list(map(lambda obj: obj2df(obj), stix['objects'])):
             dfs.extend(ldf)
-        df = pd.concat(dfs)
-        return df
+
+        #df = pd.concat(dfs)
+        return pd.concat(dfs) if dfs else pd.DataFrame()
 
 
     def flatten_sco(self, obj, viewname='observed-data'):
@@ -151,9 +153,11 @@ class StixShifterDataFrame(object):
             if not stix_bundle:
                 continue
             df_ = self.stix2dataframe(stix_bundle)
+            if df_.empty:
+                continue
             df_['data_source'] = cfn
             dfs.append(df_)
-        return pd.concat(dfs) if dfs else None
+        return pd.concat(dfs) if dfs else pd.DataFrame()
 
 
 if __name__ == '__main__':
