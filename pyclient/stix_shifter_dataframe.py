@@ -102,6 +102,9 @@ class StixShifterDataFrame(object):
         for k, v in objs.items():
             for attr, val in v.items():
                 if attr.endswith('_ref'):
+                    if val not in nodes:
+                        # Ignore bogus references
+                        continue
                     if nodes[val].parent:
                         # Already have a parent, so create a new node
                         nid = str(len(nodes))
@@ -113,11 +116,15 @@ class StixShifterDataFrame(object):
                         nodes[val].prefix = attr
                 elif attr.endswith('_refs'):
                     for i, ref in enumerate(val):
+                        if ref == k:
+                            continue
                         nodes[ref].parent = nodes[k]
                         nodes[ref].prefix = attr + f'[{i}]'
                 if attr == 'type':
-                    assert val
-                    assert val != ''
+                    # Ignore this obj
+                    continue
+                    # assert val
+                    # assert val != ''
 
         # Walk each tree and output the "flat" STIX path to each SCO property
         roots = set([node.root for node in nodes.values()])
