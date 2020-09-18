@@ -83,7 +83,6 @@ class StixShifterDataFrame(object):
         for ldf in list(map(lambda obj: obj2df(obj), stix['objects'])):
             dfs.extend(ldf)
 
-        #df = pd.concat(dfs)
         return pd.concat(dfs) if dfs else pd.DataFrame()
 
 
@@ -117,14 +116,13 @@ class StixShifterDataFrame(object):
                 elif attr.endswith('_refs'):
                     for i, ref in enumerate(val):
                         if ref == k:
+                           # preventing circular references
                             continue
                         nodes[ref].parent = nodes[k]
                         nodes[ref].prefix = attr + f'[{i}]'
                 if attr == 'type':
                     # Ignore this obj
                     continue
-                    # assert val
-                    # assert val != ''
 
         # Walk each tree and output the "flat" STIX path to each SCO property
         roots = set([node.root for node in nodes.values()])
