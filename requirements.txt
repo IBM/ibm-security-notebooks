@@ -1,1 +1,11 @@
 requests
+pandas
+anytree
+huntlib
+stix-shifter
+stix-shifter-utils
+stix-shifter-modules-qradar
+stix-shifter-modules-carbonblack
+stix-shifter-modules-stix_bundle
+matplotlib
+sklearn
