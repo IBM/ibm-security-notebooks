@@ -1,4 +1,5 @@
 # Stix-Shifter notebooks
+Open the Carbon Black threat hunting example in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IBM/ibm-security-notebooks/master?filepath=stix-shifter-notebooks%2Fcbr-hunt-certutil-using-cb-stix-bundle.ipynb)
 
 # Getting started
 
@@ -48,5 +49,5 @@ df = ssdf.search_df(query="[ipv4-addr:value = '127.0.0.1']", config_names=['qrad
 ```
 
 # Examples
-This notebook is used to demonstrate how to fetch data from data sources by stix-shifter-dataframe. After that we can do some basic operation on the dataframe.
+This notebook is used to demonstrate how to fetch data from data sources by stix-shifter-dataframe. After that we can do some basic operations on the dataframe.
 * [Load Dataframe](https://github.com/IBM/ibm-security-notebooks/blob/master/stix-shifter-notebooks/basic_df_analysis.ipynb)
