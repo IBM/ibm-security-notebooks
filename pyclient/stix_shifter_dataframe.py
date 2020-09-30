@@ -26,9 +26,12 @@ class StixShifterDataFrame(object):
         # ref: https://github.com/opencybersecurityalliance/stix-shifter/blob/ee4bdf754fc9c2a80cb5b5607210e53dd2657b72/stix_shifter/scripts/stix_shifter.py#L251
         # TODO: wrapper stix-shifter's cml tool to be function to replace this method.
         config = self.configs[config_name]
+        if 'translation_module' not in config or 'transmission_module' not in config \
+                or 'connection' not in config or 'configuration' not in config:
+            raise Exception('transmission_module, translation_module, connection and configuration should be in config.')
 
         connection_dict, configuration_dict = config['connection'], config['configuration'],
-        translation_module, transmission_module, data_source = config_name, config_name, {}
+        translation_module, transmission_module, data_source = config['translation_module'], config['transmission_module'], {}
         options = {}
 
         if 'options' in connection_dict:
