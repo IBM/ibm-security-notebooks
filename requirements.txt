@@ -1,5 +1,5 @@
 requests
-pandas
+pandas==0.25.3
 anytree
 huntlib
 stix-shifter
@@ -8,4 +8,5 @@ stix-shifter-modules-qradar
 stix-shifter-modules-carbonblack
 stix-shifter-modules-stix_bundle
 matplotlib
-sklearn
+scikit-learn==0.21.3
+watson-machine-learning-client-V4==1.0.110

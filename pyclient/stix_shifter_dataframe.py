@@ -3,7 +3,7 @@ import time
 import logging
 import pandas as pd
 from anytree import Node, PreOrderIter
-from pandas import json_normalize
+from pandas.io.json import json_normalize
 from stix_shifter.stix_translation import stix_translation
 from stix_shifter.stix_transmission import stix_transmission
 
